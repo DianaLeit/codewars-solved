@@ -10,9 +10,12 @@ const sep = 30;
 const oct = 31;
 const nov = 30;
 const dec = 31;
-const myYearOfBirth = 1994;
-const myMonthOfBirth = "oct";
-const myDayOfBirth = 10;
+const dayToday = 17;
+const monthToday = 'nov';
+const myYearOfBirth = 1995;
+const myMonthOfBirth = "mar";
+const myDayOfBirth = 28;
+const currentYear = 2022;
 const janYearDays = jan;
 const febYearDays = feb + janYearDays;
 const marYearDays = mar + febYearDays;
@@ -26,64 +29,105 @@ const octYearDays = oct + sepYearDays;
 const novYearDays = nov + octYearDays;
 const decYearDays = dec + novYearDays;
 let leftDays = 0;
-let daysInMyMonth = 0;
+let daysInMonth = 0;
 switch (myMonthOfBirth) {
   case "jan":
     leftDays = janYearDays;
-    daysInMyMonth = jan;
+    daysInMonth = jan;
     break;
   case "feb":
     leftDays = febYearDays;
-    daysInMyMonth = feb;
+    daysInMonth = feb;
     break;
   case "mar":
     leftDays = marYearDays;
-    daysInMyMonth = mar;
+    daysInMonth = mar;
     break;
-  case "apr":
+    case "apr":
     leftDays = aprYearDays;
-    daysInMyMonth = apr;
+    daysInMonth = apr;
     break;
   case "may":
     leftDays = mayYearDays;
-    daysInMyMonth = may;
+    daysInMonth = may;
     break;
   case "jun":
     leftDays = junYearDays;
-    daysInMyMonth = jun;
+    daysInMonth = jun;
     break;
   case "jul":
     leftDays = julYearDays;
-    daysInMyMonth = jul;
+    daysInMonth = jul;
     break;
   case "aug":
     leftDays = augYearDays;
-    daysInMyMonth = aug;
+    daysInMonth = aug;
     break;
   case "sep":
     leftDays = sepYearDays;
-    daysInMyMonth = sep;
+    daysInMonth = sep;
     break;
   case "oct":
-    daysInMyMonth = oct;
     leftDays = octYearDays;
+    daysInMonth = oct;
     break;
   case "nov":
     leftDays = novYearDays;
-    daysInMyMonth = nov;
+    daysInMonth = nov;
     break;
   case "dec":
     leftDays = decYearDays;
-    daysInMyMonth = dec;
+    daysInMonth = dec;
     break;
 }
-let year = 1994;
-let daysInYear = 0;
-if (year % 4) {
-  daysInYear = 365;
+let daysInYearOfBirth = 0;
+if (myYearOfBirth % 4) {
+  daysInYearOfBirth = 365;
 } else {
-  daysInYear = 366;
+  daysInYearOfBirth = 366;
 }
-let myDaysInBornYear = daysInYear - leftDays + daysInMyMonth - myDayOfBirth;
-//let my = 1996/4;
-console.log(myDaysInBornYear);
+let myDaysInBornYear = daysInYearOfBirth - leftDays + daysInMonth - myDayOfBirth;
+// TODO: This variable is approximate? Need to break years to 365 and 366 days years somehow.
+let myDaysInBetweenYears = (currentYear - myYearOfBirth - 1)*365 + Math.floor((currentYear - myYearOfBirth + 1) / 4)
+let prevMonthDays = 0;
+switch (monthToday) {
+  case "jan":
+    prevMonthDays = 0;
+    break;
+  case "feb":
+    prevMonthDays = janYearDays;
+    break;
+  case "mar":
+    prevMonthDays = febYearDays;
+    break;
+    case "apr":
+    prevMonthDays = marYearDays;
+    break;
+  case "may":
+    prevMonthDays = aprYearDays;
+    break;
+  case "jun":
+    prevMonthDays = mayYearDays;
+    break;
+  case "jul":
+    prevMonthDays = junYearDays;
+    break;
+  case "aug":
+    prevMonthDays = julYearDays;
+    break;
+  case "sep":
+    prevMonthDays = augYearDays;
+    break;
+  case "oct":
+    prevMonthDays = sepYearDays;
+    break;
+  case "nov":
+    prevMonthDays = octYearDays;
+    break;
+  case "dec":
+    prevMonthDays = novYearDays;
+    break;
+}
+let myDaysInCurrentYear = prevMonthDays + dayToday
+let myDays = myDaysInBornYear + myDaysInBetweenYears + myDaysInCurrentYear;
+console.log(myDays);
