@@ -4,9 +4,21 @@
   <body>
     <hr />
     <form>
-      <h1>Choose your date of birth to count days of your life</h1>
+      <h1 id="title">Choose your date of birth to count days of your life</h1>
       <input type="date" name="dateOfBirth" id="dateOfBirth" />
       <button type="button" onclick="ageInDays()">Put me down</button>
+    </form>
+    <form>
+      <h2>
+        You are
+        <output
+          type="number"
+          name="result"
+          id="result"
+          for="dateOfBirth"
+        ></output>
+        days old
+      </h2>
     </form>
     <script src="MyAgeInDays.js"></script>
   </body>

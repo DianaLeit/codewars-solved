@@ -153,5 +153,7 @@ function ageInDays() {
   }
   let myDaysInCurrentYear = prevMonthDays + dayToday;
   let myDays = myDaysInBornYear + myDaysInBetweenYears + myDaysInCurrentYear;
-  console.log(myDays);
+  result = document.getElementById("result");
+  result.value = myDays;
 }
+
