@@ -1,6 +1,12 @@
 function ageInDays() {
   let dateOfBirthTag = document.getElementById("dateOfBirth");
   const dateOfBirth = new Date(dateOfBirthTag.value);
+  let myDays = myAge2(dateOfBirth);
+  result = document.getElementById("result");
+  result.value = myDays;
+}
+
+function myAge2(dateOfBirth) {
   date = new Date();
   const jan = 31;
   const feb = 28;
@@ -151,6 +157,47 @@ function ageInDays() {
   }
   let myDaysInCurrentYear = prevMonthDays + dayToday;
   let myDays = myDaysInBornYear + myDaysInBetweenYears + myDaysInCurrentYear;
-  result = document.getElementById("result");
-  result.value = myDays;
+  return myDays;
+}
+
+function findKirDate() {
+  expected = 11665;
+  year = 1991;
+  while (year < 2003) {
+    month = 1;
+    while (month < 13) {
+      monthS = `${month}`;
+      day = 1;
+      while (day < 32) {
+        dayS = `${day}`;
+        dateText = `${year}-${monthS.padStart(2, "0")}-${dayS.padStart(2, "0")}`;
+        valid = Date.parse(dateText);
+        if (valid !== NaN) {
+          numberDays = myAge2(new Date(dateText));
+          if (numberDays !== expected) {
+            console.log("date which is not expected", dateText, expected);
+          }
+          expected--;
+        }
+        day++;
+      }
+      month++;
+    }
+    year++;
+  }
+}
+
+function test() {
+  di_dob = myAge2(new Date("1994-10-10"));
+  if (di_dob !== 10_287) {
+    console.log("test di failed", di_dob);
+  }
+  kir_dob = myAge2(new Date("1995-07-23"));
+  if (kir_dob !== 10_001) {
+    console.log("test kir failed", kir_dob);
+  }
+  le_dob = myAge2(new Date("1995-04-21"));
+  if (le_dob !== 10_094) {
+    console.log("test le failed", le_dob);
+  }
 }
