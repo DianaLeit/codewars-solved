@@ -5,8 +5,12 @@
     <hr />
     <form>
       <h1 id="title">Choose your date of birth to count days of your life</h1>
-      <input type="date" name="dateOfBirth" id="dateOfBirth" />
-      <button type="button" onclick="ageInDays()">Put me down</button>
+      <input
+        type="date"
+        name="dateOfBirth"
+        id="dateOfBirth"
+        onchange="ageInDays()"
+      />
     </form>
     <form>
       <h2>
