@@ -1,26 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head> </head>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="cover.css" />
+  </head>
   <body>
     <hr />
     <form>
       <h1 id="title">Choose your date of birth to count days of your life</h1>
-      <input
-        type="date"
-        name="dateOfBirth"
-        id="dateOfBirth"
-        onchange="ageInDays()"
-      />
+      <input type="date" name="dateOfBirth" id="dateOfBirth" onchange="ageInDays()" />
     </form>
     <form>
       <h2>
         You are
-        <output
-          type="number"
-          name="result"
-          id="result"
-          for="dateOfBirth"
-        ></output>
+        <output type="number" name="result" id="result" for="dateOfBirth"></output>
         days old
       </h2>
     </form>
