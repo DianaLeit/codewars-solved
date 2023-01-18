@@ -29,13 +29,25 @@ for (let index = 0; index < times.length; index++) {
     datalist.id = "doingslist";
     td.appendChild(datalist);
     const doingsList = ["yoga", "walk", "drawing"];
-    for (let doingIndex = 0; doingIndex < doingsList.length; doingIndex++) {
-      const doing = doingsList[doingIndex];
+    doingsList.forEach((doing) => {
       const option = document.createElement("option");
       option.setAttribute("value", `${doing}`);
       datalist.appendChild(option);
-    }
+    });
+    // for (let doingIndex = 0; doingIndex < doingsList.length; doingIndex++) {
+    //   const doing = doingsList[doingIndex];
+    //   const option = document.createElement("option");
+    //   option.setAttribute("value", `${doing}`);
+    //   datalist.appendChild(option);
+    // }
     tr.appendChild(td);
   }
   tbody.appendChild(tr);
 }
+
+// function forEach(array, func) {
+//   for (let index = 0; index < array.length; index++) {
+//     const element = array[index];
+//     func(element);
+//   }
+// }
