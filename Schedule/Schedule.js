@@ -24,6 +24,9 @@ if (localStorage.inputData === undefined) {
   localStorage.inputData = JSON.stringify({});
 }
 
+// inpValues is an object that maps element (<input/>) id to element value
+const inpValues = JSON.parse(localStorage.inputData);
+
 for (let index = 0; index < times.length; index++) {
   const time = times[index];
   let tr = document.createElement("tr");
@@ -35,6 +38,11 @@ for (let index = 0; index < times.length; index++) {
     const input = document.createElement("input");
     input.id = `doings ${itd} ${index}`;
     input.setAttribute("list", "doingslist");
+    inpValue = inpValues[input.id];
+    if (inpValue !== undefined) {
+      input.setAttribute("value", `${inpValue}`);
+    }
+
     input.onchange = saveInput;
     td.appendChild(input);
     const datalist = document.createElement("datalist");
