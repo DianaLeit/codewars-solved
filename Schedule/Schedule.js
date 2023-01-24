@@ -13,6 +13,17 @@ const times = [
   "18.00",
   "19.00",
 ];
+function saveInput(ev) {
+  console.log(ev.target.id);
+  let obj = JSON.parse(localStorage.inputData); // <-
+  obj[ev.target.id] = ev.target.value;
+  localStorage.inputData = JSON.stringify(obj);
+}
+
+if (localStorage.inputData === undefined) {
+  localStorage.inputData = JSON.stringify({});
+}
+
 for (let index = 0; index < times.length; index++) {
   const time = times[index];
   let tr = document.createElement("tr");
@@ -24,6 +35,7 @@ for (let index = 0; index < times.length; index++) {
     const input = document.createElement("input");
     input.id = `doings ${itd} ${index}`;
     input.setAttribute("list", "doingslist");
+    input.onchange = saveInput;
     td.appendChild(input);
     const datalist = document.createElement("datalist");
     datalist.id = "doingslist";
