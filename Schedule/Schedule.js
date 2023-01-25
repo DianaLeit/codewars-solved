@@ -13,15 +13,32 @@ const times = [
   "18.00",
   "19.00",
 ];
+
+/**
+ * @param {Event} ev event
+ */
 function saveInput(ev) {
-  console.log(ev.target.id);
-  let obj = JSON.parse(localStorage.inputData); // <-
-  obj[ev.target.id] = ev.target.value;
-  localStorage.inputData = JSON.stringify(obj);
+  // .inputData is a key of object localStorage, here we create object "obj"
+  console.log(localStorage);
+  let obj = JSON.parse(localStorage.inputData); // parses data in lSt on key inputData into object
+  obj[ev.target.id] = ev.target.value; // assign a value to each id of a object, ev.target - element <input>, .id - attribute
+  localStorage.inputData = JSON.stringify(obj); // store
 }
 
 if (localStorage.inputData === undefined) {
   localStorage.inputData = JSON.stringify({});
+}
+
+function clearInput() {
+  localStorage.removeItem("inputData");
+  let collecOfDoingInputs = document.getElementsByClassName("doingInput");
+  for (let index = 0; index < collecOfDoingInputs.length; index++) {
+    let element = collecOfDoingInputs[index];
+    element.value = "";
+  }
+  if (localStorage.inputData === undefined) {
+    localStorage.inputData = JSON.stringify({});
+  }
 }
 
 // inpValues is an object that maps element (<input/>) id to element value
@@ -38,11 +55,11 @@ for (let index = 0; index < times.length; index++) {
     const input = document.createElement("input");
     input.id = `doings ${itd} ${index}`;
     input.setAttribute("list", "doingslist");
-    inpValue = inpValues[input.id];
+    input.setAttribute("class", "doingInput");
+    const inpValue = inpValues[input.id];
     if (inpValue !== undefined) {
       input.setAttribute("value", `${inpValue}`);
     }
-
     input.onchange = saveInput;
     td.appendChild(input);
     const datalist = document.createElement("datalist");
@@ -54,6 +71,7 @@ for (let index = 0; index < times.length; index++) {
       option.setAttribute("value", `${doing}`);
       datalist.appendChild(option);
     });
+
     // for (let doingIndex = 0; doingIndex < doingsList.length; doingIndex++) {
     //   const doing = doingsList[doingIndex];
     //   const option = document.createElement("option");
