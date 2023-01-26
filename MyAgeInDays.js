@@ -107,11 +107,26 @@ function ageInDays() {
     daysInYearOfBirth = 366;
   }
   let myDaysInBornYear = daysInYearOfBirth - leftDays + daysInMonth - myDayOfBirth;
-  // TODO: This variable is approximate? Need to break years to 365 and 366 days years somehow.
   let myDaysInBetweenYears =
     (currentYear - myYearOfBirth - 1) * 365 + Math.floor((currentYear - myYearOfBirth + 1) / 4);
   let prevMonthDays = 0;
-  switch (monthToday) {
+
+  const prevMonthDaysObj = {
+    jan: 0,
+    feb: janYearDays,
+    mar: febYearDays,
+    apr: marYearDays,
+    may: aprYearDays,
+    jun: mayYearDays,
+    jul: junYearDays,
+    aug: julYearDays,
+    sep: augYearDays,
+    oct: sepYearDays,
+    nov: octYearDays,
+    dec: novYearDays,
+  };
+  prevMonthDays = prevMonthDaysObj[monthToday];
+  /*switch (monthToday) {
     case "jan":
       prevMonthDays = 0;
       break;
@@ -149,8 +164,9 @@ function ageInDays() {
       prevMonthDays = novYearDays;
       break;
   }
+  */
   let myDaysInCurrentYear = prevMonthDays + dayToday;
   let myDays = myDaysInBornYear + myDaysInBetweenYears + myDaysInCurrentYear;
-  result = document.getElementById("result");
-  result.value = myDays;
+  result = document.getElementById("result"); //here we receive result from html without value
+  result.value = myDays; //we put  this value in "result"
 }
