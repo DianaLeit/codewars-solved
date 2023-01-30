@@ -1,172 +1,72 @@
 function ageInDays() {
-  let dateOfBirthTag = document.getElementById("dateOfBirth");
+  const dateOfBirthTag = document.getElementById("dateOfBirth");
   const dateOfBirth = new Date(dateOfBirthTag.value);
   date = new Date();
-  const jan = 31;
-  const feb = 28;
-  const mar = 31;
-  const apr = 30;
-  const may = 31;
-  const jun = 30;
-  const jul = 31;
-  const aug = 31;
-  const sep = 30;
-  const oct = 31;
-  const nov = 30;
-  const dec = 31;
   const dayToday = date.getDate();
-  let monthToday = date.getMonth() + 1;
+  const monthTodayInt = date.getMonth() + 1;
   const currentYear = date.getFullYear();
   const myYearOfBirth = dateOfBirth.getFullYear();
-  let myMonthOfBirth = dateOfBirth.getMonth() + 1;
+  const myMonthOfBirthInt = dateOfBirth.getMonth() + 1;
   const myDayOfBirth = dateOfBirth.getDate();
-  let months = {
-    1: "jan",
-    2: "feb",
-    3: "mar",
-    4: "apr",
-    5: "may",
-    6: "jun",
-    7: "jul",
-    8: "aug",
-    9: "sep",
-    10: "oct",
-    11: "nov",
-    12: "dec",
+  // Parses months numbers to string
+  const months = {
+    1: { name: "jan", days: 31 },
+    2: { name: "feb", days: 28 },
+    3: { name: "mar", days: 31 },
+    4: { name: "apr", days: 30 },
+    5: { name: "may", days: 31 },
+    6: { name: "jun", days: 30 },
+    7: { name: "jul", days: 31 },
+    8: { name: "aug", days: 31 },
+    9: { name: "sep", days: 30 },
+    10: { name: "oct", days: 31 },
+    11: { name: "nov", days: 30 },
+    12: { name: "dec", days: 31 },
   };
-  monthToday = months[monthToday];
-  myMonthOfBirth = months[myMonthOfBirth];
-  const janYearDays = jan;
-  const febYearDays = feb + janYearDays;
-  const marYearDays = mar + febYearDays;
-  const aprYearDays = apr + marYearDays;
-  const mayYearDays = may + aprYearDays;
-  const junYearDays = jun + mayYearDays;
-  const julYearDays = jul + junYearDays;
-  const augYearDays = aug + julYearDays;
-  const sepYearDays = sep + augYearDays;
-  const octYearDays = oct + sepYearDays;
-  const novYearDays = nov + octYearDays;
-  const decYearDays = dec + novYearDays;
-  let leftDays = 0;
-  let daysInMonth = 0;
-  switch (myMonthOfBirth) {
-    case "jan":
-      leftDays = janYearDays;
-      daysInMonth = jan;
-      break;
-    case "feb":
-      leftDays = febYearDays;
-      daysInMonth = feb;
-      break;
-    case "mar":
-      leftDays = marYearDays;
-      daysInMonth = mar;
-      break;
-    case "apr":
-      leftDays = aprYearDays;
-      daysInMonth = apr;
-      break;
-    case "may":
-      leftDays = mayYearDays;
-      daysInMonth = may;
-      break;
-    case "jun":
-      leftDays = junYearDays;
-      daysInMonth = jun;
-      break;
-    case "jul":
-      leftDays = julYearDays;
-      daysInMonth = jul;
-      break;
-    case "aug":
-      leftDays = augYearDays;
-      daysInMonth = aug;
-      break;
-    case "sep":
-      leftDays = sepYearDays;
-      daysInMonth = sep;
-      break;
-    case "oct":
-      leftDays = octYearDays;
-      daysInMonth = oct;
-      break;
-    case "nov":
-      leftDays = novYearDays;
-      daysInMonth = nov;
-      break;
-    case "dec":
-      leftDays = decYearDays;
-      daysInMonth = dec;
-      break;
-  }
-  let daysInYearOfBirth = 0;
+  const monthToday = months[monthTodayInt].name;
+  const daysInMonth = months[myMonthOfBirthInt].days;
+  const myMonthOfBirth = months[myMonthOfBirthInt].name;
+  const monthYearDays = {
+    jan: 31,
+    feb: 59,
+    mar: 90,
+    apr: 120,
+    may: 151,
+    jun: 181,
+    jul: 212,
+    aug: 243,
+    sep: 273,
+    oct: 304,
+    nov: 334,
+    dec: 365,
+  };
+
+  let leftDays = monthYearDays[myMonthOfBirth];
+
+  let daysInYearOfBirth = 366;
   if (myYearOfBirth % 4) {
     daysInYearOfBirth = 365;
-  } else {
-    daysInYearOfBirth = 366;
   }
-  let myDaysInBornYear = daysInYearOfBirth - leftDays + daysInMonth - myDayOfBirth;
-  let myDaysInBetweenYears =
+  const myDaysInBornYear = daysInYearOfBirth - leftDays + daysInMonth - myDayOfBirth;
+  const myDaysInBetweenYears =
     (currentYear - myYearOfBirth - 1) * 365 + Math.floor((currentYear - myYearOfBirth + 1) / 4);
-  let prevMonthDays = 0;
 
-  const prevMonthDaysObj = {
+  const prevMonthDays = {
     jan: 0,
-    feb: janYearDays,
-    mar: febYearDays,
-    apr: marYearDays,
-    may: aprYearDays,
-    jun: mayYearDays,
-    jul: junYearDays,
-    aug: julYearDays,
-    sep: augYearDays,
-    oct: sepYearDays,
-    nov: octYearDays,
-    dec: novYearDays,
+    feb: 31,
+    mar: 59,
+    apr: 90,
+    may: 120,
+    jun: 151,
+    jul: 181,
+    aug: 212,
+    sep: 243,
+    oct: 273,
+    nov: 304,
+    dec: 334,
   };
-  prevMonthDays = prevMonthDaysObj[monthToday];
-  /*switch (monthToday) {
-    case "jan":
-      prevMonthDays = 0;
-      break;
-    case "feb":
-      prevMonthDays = janYearDays;
-      break;
-    case "mar":
-      prevMonthDays = febYearDays;
-      break;
-    case "apr":
-      prevMonthDays = marYearDays;
-      break;
-    case "may":
-      prevMonthDays = aprYearDays;
-      break;
-    case "jun":
-      prevMonthDays = mayYearDays;
-      break;
-    case "jul":
-      prevMonthDays = junYearDays;
-      break;
-    case "aug":
-      prevMonthDays = julYearDays;
-      break;
-    case "sep":
-      prevMonthDays = augYearDays;
-      break;
-    case "oct":
-      prevMonthDays = sepYearDays;
-      break;
-    case "nov":
-      prevMonthDays = octYearDays;
-      break;
-    case "dec":
-      prevMonthDays = novYearDays;
-      break;
-  }
-  */
-  let myDaysInCurrentYear = prevMonthDays + dayToday;
-  let myDays = myDaysInBornYear + myDaysInBetweenYears + myDaysInCurrentYear;
+  const DaysInCurrentYear = prevMonthDays[monthToday] + dayToday; //(jan)0+26
+  const myDays = myDaysInBornYear + myDaysInBetweenYears + DaysInCurrentYear;
   result = document.getElementById("result"); //here we receive result from html without value
   result.value = myDays; //we put  this value in "result"
 }
