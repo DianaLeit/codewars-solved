@@ -40,6 +40,14 @@ function addInput() {
   }
   localStorage.doingsListData = JSON.stringify(doingsList);
 }
+function clearInputList() {
+  let changedDoingsList = document.getElementById("doingslist");
+  for (let index = 0; index < changedDoingsList.length; index++) {
+    let element = changedDoingsList[index];
+    element.value = "";
+  }
+  localStorage.doingsListData = JSON.stringify([]);
+}
 
 function init() {
   if (localStorage.inputData === undefined) {
