@@ -4,13 +4,9 @@
 function saveInput(ev) {
   // .inputData is a key of object localStorage, here we create object "obj"
   console.log(localStorage);
-  let obj = JSON.parse(localStorage.inputData); // parses data in lSt on key inputData into object
+  let obj = JSON.parse(localStorage.inputData); // parses data in lSt on key inputData into obj
   obj[ev.target.id] = ev.target.value; // assign a value to each id of a object, ev.target - element <input>, .id - attribute
   localStorage.inputData = JSON.stringify(obj); // store
-}
-
-if (localStorage.inputData === undefined) {
-  localStorage.inputData = JSON.stringify({});
 }
 
 function clearInput() {
@@ -39,16 +35,25 @@ function addInput() {
       const option = document.createElement("option");
       option.setAttribute("value", `${element.value}`);
       changedDoingsList.appendChild(option);
+      doingsList.push(element.value);
     }
   }
+  localStorage.doingsListData = JSON.stringify(doingsList);
 }
 
 function init() {
+  if (localStorage.inputData === undefined) {
+    localStorage.inputData = JSON.stringify({});
+  }
+  if (localStorage.doingsListData === undefined) {
+    localStorage.doingsListData = JSON.stringify([]);
+  }
   const body = document.body;
   const datalist = document.createElement("datalist");
   datalist.id = "doingslist";
   body.appendChild(datalist);
   const doingsList = ["yoga", "walk", "drawing"];
+  //localStorage.doingsListData = JSON.parse(doingsList);
   doingsList.forEach((doing) => {
     const option = document.createElement("option");
     option.setAttribute("value", `${doing}`);

@@ -40,6 +40,16 @@
       <tbody id="tbody" class="table-group-divider"></tbody>
     </table>
     <script src="Schedule.js"></script>
-    <input type="button" name="clear" id="clear" value="Clear" onclick="clearInput()" />
+    <div class="d-grid gap-2 d-md-flex">
+      <input type="button" class="btn btn-danger" name="clear" id="clear" value="Clear" onclick="clearInput()" />
+      <input
+        type="button"
+        class="btn btn-success"
+        name="addInput"
+        id="addInput"
+        value="Save input to list"
+        onclick="addInput()"
+      />
+    </div>
   </body>
 </html>
