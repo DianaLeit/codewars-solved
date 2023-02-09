@@ -52,8 +52,7 @@ function init() {
   const datalist = document.createElement("datalist");
   datalist.id = "doingslist";
   body.appendChild(datalist);
-  const doingsList = ["yoga", "walk", "drawing"];
-  //localStorage.doingsListData = JSON.parse(doingsList);
+  let doingsList = JSON.parse(localStorage.doingsListData);
   doingsList.forEach((doing) => {
     const option = document.createElement("option");
     option.setAttribute("value", `${doing}`);
