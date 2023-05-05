@@ -66,7 +66,12 @@ function init() {
     option.setAttribute("value", `${doing}`);
     datalist.appendChild(option);
   });
-
+  // for (let doingIndex = 0; doingIndex < doingsList.length; doingIndex++) {
+  //   const doing = doingsList[doingIndex];
+  //   const option = document.createElement("option");
+  //   option.setAttribute("value", `${doing}`);
+  //   datalist.appendChild(option);
+  // }
   const tbody = document.getElementById("tbody");
   const times = [
     "8.00",
@@ -105,12 +110,6 @@ function init() {
       input.onchange = saveInput;
       td.appendChild(input);
 
-      // for (let doingIndex = 0; doingIndex < doingsList.length; doingIndex++) {
-      //   const doing = doingsList[doingIndex];
-      //   const option = document.createElement("option");
-      //   option.setAttribute("value", `${doing}`);
-      //   datalist.appendChild(option);
-      // }
       tr.appendChild(td);
     }
     tbody.appendChild(tr);
