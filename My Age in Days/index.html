@@ -2,15 +2,14 @@
 <html lang="en" dir="ltr">
   <head> </head>
   <body>
-    <hr />
     <form>
       <h1 id="title">Choose your date of birth to count days of your life</h1>
-      <input type="date" name="dateOfBirth" id="dateOfBirth" onchange="ageInDays()" />
+      <input type="date" name="dateOfBirth" id="dateOfBirth" onchange="ageInDays()" data-test="date-input"/>
     </form>
     <form>
       <h2>
         You are
-        <output type="number" name="result" id="result" for="dateOfBirth"></output>
+        <output type="number" name="result" id="result" for="dateOfBirth" data-test="result"></output>
         days old
       </h2>
     </form>
