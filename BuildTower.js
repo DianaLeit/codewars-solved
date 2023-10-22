@@ -19,6 +19,22 @@ function towerBuilder(nFloors) {
   return obj;
 }
 
+// Mine property-based tests
+/**
+ * @param {number} n
+ */
+function checkProps(n) {
+  let result = towerBuilder(n);
+  Test.assertEquals(result.length, n);
+  result.forEach((element) => {
+    Test.assertEquals(element.length, 2 * n - 1);
+  });
+  Test.assertNotContains(result[result.length - 1], " ");
+  result.forEach((element) => {
+    Test.assertContains(element, "*");
+  });
+}
+
 //Codewars tests
 const Test = require("@codewars/test-compat");
 
@@ -35,18 +51,3 @@ describe("Tests", () => {
   });
 });
 
-// Mine property-based tests
-/**
- * @param {number} n
- */
-function checkProps(n) {
-  let result = towerBuilder(n);
-  Test.assertEquals(result.length, n);
-  result.forEach((element) => {
-    Test.assertEquals(element.length, 2 * n - 1);
-  });
-  Test.assertNotContains(result[result.length - 1], " ");
-  result.forEach((element) => {
-    Test.assertContains(element, "*");
-  });
-}
